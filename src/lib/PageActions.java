@@ -13,6 +13,9 @@ public class PageActions {
     public void sendInputs(WebDriver driver, By emailInpt, String inputValue) {
         driver.findElement(emailInpt).sendKeys(inputValue);
     }
+    public void clearInputs(WebDriver driver, By emailInpt) {
+        driver.findElement(emailInpt).clear();
+    }
     public void ClickBtn(WebDriver driver, By loginBtn) {
         driver.findElement(loginBtn).click();
     }

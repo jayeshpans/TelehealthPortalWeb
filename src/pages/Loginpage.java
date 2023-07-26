@@ -1,8 +1,14 @@
 package pages;
 
 import lib.PageActions;
+import lib.WaitActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Loginpage extends PageActions {
     private final WebDriver driver;
@@ -36,10 +42,12 @@ public class Loginpage extends PageActions {
     }
 
     public void emailsendKeys(String inputValue) {
+        clearInputs(driver, emailInpt);
         sendInputs(driver, emailInpt, inputValue);
     }
 
     public void passwordSendKeys(String inputValue) {
+        clearInputs(driver, passwordInpt);
         sendInputs(driver, passwordInpt, inputValue);
     }
 
@@ -48,8 +56,9 @@ public class Loginpage extends PageActions {
     }
 
 
-    public void getLoginPageErrorMessage() {
-
-        System.out.println(getTxt(driver, loginErrorMsg));
+    public String getLoginPageErrorMessage() {
+        WaitActions objwait = new WaitActions();
+        objwait.elePresent(driver, loginErrorMsg, 100);
+        return getTxt(driver, loginErrorMsg);
     }
 }
