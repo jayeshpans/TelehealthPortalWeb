@@ -2,6 +2,10 @@ package lib;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class PageActions {
     public String getTxt(WebDriver driver, By pageTitle) {
@@ -16,7 +20,27 @@ public class PageActions {
     public void clearInputs(WebDriver driver, By emailInpt) {
         driver.findElement(emailInpt).clear();
     }
-    public void ClickBtn(WebDriver driver, By loginBtn) {
+    public void clickBtn(WebDriver driver, By loginBtn) {
         driver.findElement(loginBtn).click();
+    }
+    public void selectDDLValue(WebDriver driver, By selectDDlEle, String valueddlInpt) {
+        Select selectDDL = new Select(driver.findElement(selectDDlEle));
+        selectDDL.selectByValue(valueddlInpt);
+    }
+    private void selectDDLIndex(WebDriver driver, By selectDDlEle, int indexddlInpt) {
+        Select selectDDL = new Select(driver.findElement(selectDDlEle));
+        selectDDL.selectByIndex(indexddlInpt);
+    }
+    public void selectDDLVisibleTxt(WebDriver driver, By selectDDlEle, String visibleddlInpt) {
+        Select selectDDL = new Select(driver.findElement(selectDDlEle));
+        selectDDL.selectByVisibleText(visibleddlInpt);
+    }
+    private List<WebElement> getAllSelOptions(WebDriver driver, By selectDDlEle) {
+        Select selectDDL = new Select(driver.findElement(selectDDlEle));
+        return selectDDL.getAllSelectedOptions();
+    }
+    private void deselectAll(WebDriver driver, By selectDDlEle) {
+        Select selectDDL = new Select(driver.findElement(selectDDlEle));
+        selectDDL.deselectAll();
     }
 }
